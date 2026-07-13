@@ -1,84 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Eaglercraft</title>
+  <meta charset="utf-8">
+  <title>Eaglercraft 1.20</title>
   <style>
-    /* Styling for a custom login screen that won't trigger Firefox blocks */
+    /* Clean custom styling for your strict password prompt */
     body {
       margin: 0;
       padding: 0;
       background-color: #121212;
       font-family: Arial, sans-serif;
-    }
-    #login-screen {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       color: white;
+      overflow: hidden;
     }
-    .input-box {
+    .login-box {
+      text-align: center;
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      border: 3px solid #4CAF50;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .input-field {
       padding: 12px;
       font-size: 16px;
       border: 2px solid #4CAF50;
       border-radius: 4px;
       background-color: #222;
       color: white;
-      margin-bottom: 10px;
-      width: 250px;
+      margin-bottom: 15px;
+      width: 220px;
       text-align: center;
     }
-    .submit-btn {
-      padding: 10px 20px;
+    .btn {
+      padding: 10px 24px;
       font-size: 16px;
       background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      font-weight: bold;
     }
-    .submit-btn:hover {
+    .btn:hover {
       background-color: #45a049;
     }
     #game-container {
-      display: none; /* Stays completely hidden until the correct code is entered */
-      margin: 20px 0px;
-      text-align: center;
+      display: none;
+      width: 100%;
+      height: 100vh;
+    }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Custom Interface for entering the password -->
-  <div id="login-screen">
-    <h2 style="color: #4CAF50;">🔒 Strict Security Access</h2>
-    <p>You have exactly 1 attempt to enter an approved pin.</p>
-    <input type="password" id="user-code" class="input-box" placeholder="Enter strict secret code">
-    <button onclick="verifyCode()" class="submit-btn">Unlock Game</button>
+  <!-- Screen 1: The Login System -->
+  <div id="lock-screen" class="login-box">
+    <h2 style="color: #4CAF50; margin-top: 0;">🔒 Security Access</h2>
+    <p style="font-size: 14px; color: #aaa;">You have 1 attempt. Capital letters matter.</p>
+    <input type="password" id="pass-entry" class="input-field" placeholder="Enter secret code"><br>
+    <button onclick="checkPass()" class="btn">Unlock Game</button>
   </div>
 
-  <!-- Hidden Game Container -->
+  <!-- Screen 2: Hidden Game Container holding the 1.20 Raw Link -->
   <div id="game-container">
-    <iframe id="game-frame" allow="autoplay; gamepad; keyboard" allowfullscreen="true" height="600" loading="lazy" style="border-radius: 8px; border: 4px solid #4CAF50; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" width="100%">
-    </iframe>
+    <iframe id="game-frame" allow="autoplay; gamepad; keyboard" allowfullscreen="true" src=""></iframe>
   </div>
 
   <script>
-    function verifyCode() {
-      // Your exact case-sensitive allowed codes list
-      var allowedCodes = ["uno", "can", "dont", "Furrowfield123"]; 
-      var enteredValue = document.getElementById("user-code").value.trim();
+    function checkPass() {
+      // Your exact case-sensitive pins
+      var allowedCodes = ["uno", "can", "dont", "Furrowfield123"];
+      var entered = document.getElementById("pass-entry").value.trim();
 
-      if (allowedCodes.includes(enteredValue)) {
-        // If correct, hide the login box and load the iframe source code safely
-        document.getElementById("login-screen").style.display = "none";
+      if (allowedCodes.includes(entered)) {
+        // SUCCESS: Hides login box and forces iframe to fetch your raw 1.20 game data link safely
+        document.getElementById("lock-screen").style.display = "none";
         document.getElementById("game-container").style.display = "block";
-        document.getElementById("game-frame").src = "https://github.io";
+        
+        // This converted GitHack proxy link forces the 1.20 raw code to launch as a real playable game
+        document.getElementById("game-frame").src = "https://githack.com";
       } else {
-        // Your custom alert message that kicks them out on a single failed guess
+        // FAIL: Shows your custom message and boots them to Google
         alert("❌ Ask Lloyd for code");
-        window.location.href = "https://google.com";
+        window.top.location.href = "https://google.com";
       }
     }
   </script>
