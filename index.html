@@ -49,6 +49,16 @@
     .btn:hover {
       background-color: #45a049;
     }
+    #game-container {
+      display: none;
+      width: 100%;
+      height: 100vh;
+    }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -61,14 +71,23 @@
     <button onclick="checkPass()" class="btn">Unlock Game</button>
   </div>
 
+  <!-- Screen 2: Hidden Minecraft Container -->
+  <div id="game-container">
+    <iframe id="game-frame" allow="autoplay; gamepad; keyboard" allowfullscreen="true" src=""></iframe>
+  </div>
+
   <script>
     function checkPass() {
       var allowedCodes = ["uno", "can", "dont", "Furrowfield123"];
       var entered = document.getElementById("pass-entry").value.trim();
 
       if (allowedCodes.includes(entered)) {
-        // SUCCESS: Bounces users to an unblocked GitHub mirror that avoids the school filter
-        window.location.href = "https://eaglercraftfree.github.io/";
+        // SUCCESS: Hides login layer and forces frame to render the game through an unblocked mirror header
+        document.getElementById("lock-screen").style.display = "none";
+        document.getElementById("game-container").style.display = "block";
+        
+        // This converted link strips the GitHub CSP headers so the page opens natively inside your framework
+        document.getElementById("game-frame").src = "https://githack.com";
       } else {
         alert("❌ Ask Lloyd for code");
         window.top.location.href = "https://google.com";
