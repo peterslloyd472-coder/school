@@ -53,7 +53,7 @@
 </head>
 <body>
 
-  <!-- Screen 1: Lloyd's Lock Box -->
+  <!-- Screen 1: Lloyd's Lock Box Interface -->
   <div id="lock-screen" class="login-box">
     <h2 style="color: #4CAF50; margin-top: 0;">🔒 Security Access</h2>
     <p style="font-size: 14px; color: #aaa;">You have 1 attempt. Capital letters matter.</p>
@@ -67,7 +67,7 @@
       var entered = document.getElementById("pass-entry").value.trim();
 
       if (allowedCodes.includes(entered)) {
-        // SUCCESS: Changes the address straight to your huge working game file
+        // SUCCESS: Hands players straight off to your unedited 1.20 game file path
         window.location.href = "game.html";
       } else {
         alert("❌ Ask Lloyd for code");
