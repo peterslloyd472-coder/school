@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Eaglercraft 1.8.8</title>
+  <title>System Access</title>
   <style>
     body {
       margin: 0;
@@ -49,16 +49,6 @@
     .btn:hover {
       background-color: #45a049;
     }
-    #game-container {
-      display: none;
-      width: 100%;
-      height: 100vh;
-    }
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
   </style>
 </head>
 <body>
@@ -71,26 +61,17 @@
     <button onclick="checkPass()" class="btn">Unlock Game</button>
   </div>
 
-  <!-- Screen 2: Hidden Minecraft Frame pointing to a working unblocked 1.8.8 client -->
-  <div id="game-container">
-    <iframe id="game-frame" allow="autoplay; gamepad; keyboard" allowfullscreen="true" src=""></iframe>
-  </div>
-
   <script>
     function checkPass() {
-      // Your exact case-sensitive pins
       var allowedCodes = ["uno", "can", "dont", "Furrowfield123"];
       var entered = document.getElementById("pass-entry").value.trim();
 
       if (allowedCodes.includes(entered)) {
-        document.getElementById("lock-screen").style.display = "none";
-        document.getElementById("game-container").style.display = "block";
-        
-        // This link points to a fully working unblocked 1.8.8 client that works on school PCs
-        document.getElementById("game-frame").src = "https://githack.com";
+        // SUCCESS: Replaces your page address straight with the stable official 1.8.8 engine link
+        window.location.href = "https://eaglercraft.com/mc/1.8.8/";
       } else {
         alert("❌ Ask Lloyd for code");
-        window.top.location.href = "https://google.com";
+        window.top.location.href = "https://www.google.com";
       }
     }
   </script>
