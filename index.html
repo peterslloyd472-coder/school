@@ -53,7 +53,7 @@
 </head>
 <body>
 
-  <!-- Lloyd's Security Lock Box -->
+  <!-- Screen 1: Lloyd's Lock Box -->
   <div id="lock-screen" class="login-box">
     <h2 style="color: #4CAF50; margin-top: 0;">🔒 Security Access</h2>
     <p style="font-size: 14px; color: #aaa;">You have 1 attempt. Capital letters matter.</p>
@@ -63,15 +63,13 @@
 
   <script>
     function checkPass() {
-      // Your strict case-sensitive codes
       var allowedCodes = ["uno", "can", "dont", "Furrowfield123"];
       var entered = document.getElementById("pass-entry").value.trim();
 
       if (allowedCodes.includes(entered)) {
-        // SUCCESS: Safely forwards the browser straight to a working, stable web mirror of the game
-        window.location.href = "https://github.io";
+        // SUCCESS: Changes the address straight to your working game file
+        window.location.href = "game.html";
       } else {
-        // FAIL: Shows your name alert and routes them straight to Google
         alert("❌ Ask Lloyd for code");
         window.top.location.href = "https://google.com";
       }
